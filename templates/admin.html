@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block page_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>Contact Messages</h1>
+        <div class="message-count">{{ contacts|length }} total messages</div>
+    </div>
+
+    <div class="table-wrapper">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in contacts %}
+                <tr>
+                    <td>{{ c.id }}</td>
+                    <td class="name-cell">{{ c.name }}</td>
+                    <td class="email-cell">{{ c.email }}</td>
+                    <td>{{ c.subject }}</td>
+                    <td class="message-cell">{{ c.message }}</td>
+                    <td class="actions-cell">
+                        <a href="/edit/{{ c.id }}" class="btn-edit">Edit</a>
+                        <a href="/delete/{{ c.id }}" 
+                           class="btn-delete"
+                           onclick="return confirm('Delete this message?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block page_css %}{% endblock %}
+</head>
+<body>
+
+    <nav>
+    <div class="nav-container">
+        <div class="site-name">Website</div>
+        <div class="nav-links">
+            <a href="/">Home</a> |
+            <a href="/about">About</a> |
+            <a href="/contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+    <hr>
+
+    <!-- Page Content -->
+    {% block content %}
+    {% endblock %}
+
+    <hr>
+    <footer>
+        © 2026 My Website
+    </footer>
+
+</body>
+</html>
