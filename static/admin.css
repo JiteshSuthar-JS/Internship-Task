@@ -1,47 +1,171 @@
+/* Admin Container */
 .admin-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 40px 20px;
+    max-width: calc(100vw - 80px);
+    width: 100%;
+    margin: 0;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    grid-template-rows: auto 1fr 1fr;
+    gap: 24px;
+    grid-template-areas: 
+        "header header"
+        "stats messages"
+        "stats users";
 }
 
-.admin-header {
+/* Dashboard Header */
+.dashboard-header {
+    grid-area: header;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    color: #1a202c;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    color: #718096;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Stats Grid - Left Column */
+.stats-grid {
+    grid-area: stats;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e8ecef;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.messages-icon {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.users-icon {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+    color: white;
+}
+
+.admin-icon {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+    color: white;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a202c;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    color: #718096;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Section Card */
+.section-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e8ecef;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+}
+
+/* Contact Messages - Top Right */
+.contact-messages-section {
+    grid-area: messages;
+    max-width: 900px;
+}
+
+/* Users Section - Bottom Right */
+.users-section {
+    grid-area: users;
+    max-width: 900px;
+}
+
+.section-header {
+    padding: 20px 24px;
+    border-bottom: 2px solid #f7fafc;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #e8ecef;
+    flex-shrink: 0;
 }
 
-.admin-header h1 {
-    font-size: 2rem;
+.section-header h2 {
+    font-size: 1.25rem;
     color: #1a202c;
     font-weight: 700;
     margin: 0;
 }
 
-.message-count {
-    background: #3b82f6;
+.badge {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
-    padding: 8px 20px;
+    padding: 6px 16px;
     border-radius: 20px;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
     font-weight: 600;
 }
 
 /* Table Wrapper */
 .table-wrapper {
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e8ecef;
-    overflow: hidden;
+    overflow-x: hidden;
+    flex: 1;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 /* Table Styles */
 .admin-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed;
 }
 
 .admin-table thead {
@@ -49,17 +173,19 @@
 }
 
 .admin-table th {
-    padding: 16px;
+    padding: 12px 16px;
     text-align: left;
     font-weight: 600;
-    color: #2d3748;
-    font-size: 0.9rem;
+    color: #4a5568;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     border-bottom: 2px solid #e8ecef;
 }
 
 .admin-table tbody tr {
-    border-bottom: 1px solid #e8ecef;
-    transition: background 0.2s ease;
+    border-bottom: 1px solid #f1f3f5;
+    transition: all 0.2s ease;
 }
 
 .admin-table tbody tr:hover {
@@ -71,79 +197,223 @@
 }
 
 .admin-table td {
-    padding: 16px;
+    padding: 12px 16px;
     color: #4a5568;
-    font-size: 0.95rem;
+    font-size: 0.875rem;
 }
 
+/* ID Badge */
+.id-badge {
+    background: #edf2f7;
+    color: #4a5568;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+/* Name Cell */
 .name-cell {
     font-weight: 600;
     color: #2d3748;
 }
 
-.email-cell {
-    color: #3b82f6;
+/* Username Cell with Avatar */
+.username-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: #2d3748;
 }
 
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+/* Email Cell */
+.email-cell {
+    color: #667eea;
+    font-weight: 500;
+}
+
+/* Subject Cell */
+.subject-cell {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+/* Message Cell */
 .message-cell {
-    max-width: 300px;
+    max-width: 250px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: #718096;
 }
 
+/* Role Badge */
+.role-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.admin-badge {
+    background: linear-gradient(135deg, #ed8936 0%, #dd6b20 100%);
+    color: white;
+}
+
+.user-badge {
+    background: #edf2f7;
+    color: #4a5568;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.status-badge.active {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+/* Actions Cell */
 .actions-cell {
     white-space: nowrap;
 }
 
 .btn-edit,
 .btn-delete {
-    display: inline-block;
-    padding: 6px 16px;
-    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 0.875rem;
     transition: all 0.2s ease;
     margin-right: 8px;
 }
 
 .btn-edit {
-    background: #3b82f6;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
 }
 
 .btn-edit:hover {
-    background: #2563eb;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
 }
 
 .btn-delete {
-    background: #ef4444;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     color: white;
 }
 
 .btn-delete:hover {
-    background: #dc2626;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.btn-edit svg,
+.btn-delete svg {
+    flex-shrink: 0;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px !important;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    color: #718096;
+    font-size: 1.1rem;
+    margin: 0;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
     .admin-container {
-        padding: 20px 10px;
+        grid-template-columns: 350px 1fr;
+    }
+}
+
+@media (max-width: 968px) {
+    .admin-container {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "stats"
+            "messages"
+            "users";
+        padding: 24px 20px;
     }
 
-    .admin-header {
+    .dashboard-header h1 {
+        font-size: 2rem;
+    }
+
+    .stats-grid {
+        gap: 16px;
+    }
+
+    .table-wrapper {
+        max-height: none;
+        overflow-x: auto;
+    }
+
+    .admin-table {
+        table-layout: auto;
+    }
+}
+
+    .stat-card {
+        padding: 20px;
+    }
+
+    .stat-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+
+    .section-header {
+        padding: 20px;
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
     }
 
-    .admin-header h1 {
-        font-size: 1.5rem;
+    .section-header h2 {
+        font-size: 1.25rem;
     }
 
     .table-wrapper {
@@ -157,15 +427,77 @@
     .message-cell {
         max-width: 200px;
     }
-}
+
+    .btn-edit,
+    .btn-delete {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .btn-edit svg,
+    .btn-delete svg {
+        width: 14px;
+        height: 14px;
+    }
 
 @media (max-width: 480px) {
-    .admin-header h1 {
-        font-size: 1.3rem;
+    .dashboard-header h1 {
+        font-size: 1.75rem;
     }
 
-    .message-count {
-        font-size: 0.85rem;
-        padding: 6px 16px;
+    .subtitle {
+        font-size: 0.9rem;
     }
+
+    .stat-value {
+        font-size: 1.75rem;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 4px 12px;
+    }
+
+    .admin-table th,
+    .admin-table td {
+        padding: 12px 16px;
+        font-size: 0.875rem;
+    }
+}
+
+/* Smooth Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stat-card,
+.section-card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.stat-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.stat-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.stat-card:nth-child(3) {
+    animation-delay: 0.3s;
 }

@@ -25,7 +25,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 30px;
+    min-height: 30px;
 }
 
 .site-name {
@@ -37,6 +37,7 @@ nav {
 .nav-links {
     display: flex;
     align-items: center;
+    gap: 4px;
 }
 
 nav a {
@@ -61,6 +62,49 @@ nav a.active {
     color: white;
 }
 
+/* Login/Register Button */
+.btn-auth {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    font-weight: 600;
+    padding: 8px 20px !important;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-auth:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    color: white !important;
+}
+
+/* Username Display */
+.username-display {
+    color: #2d3748;
+    padding: 8px 16px;
+    margin: 0 4px;
+    background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-block;
+    border: 1px solid #e2e8f0;
+}
+
+/* Logout Button */
+nav a[href="/logout"] {
+    color: #e53e3e;
+    border: 1.5px solid #fc8181;
+    font-weight: 600;
+    background: transparent;
+}
+
+nav a[href="/logout"]:hover {
+    background: #fff5f5 !important;
+    color: #c53030 !important;
+    border-color: #e53e3e;
+}
+
 /* Responsive Design for Nav */
 @media (max-width: 768px) {
     nav {
@@ -79,11 +123,22 @@ nav a.active {
     .nav-links {
         width: 100%;
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     nav a {
         padding: 6px 12px;
         margin: 0 2px;
+        font-size: 0.95rem;
+    }
+
+    .username-display {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn-auth {
+        padding: 6px 16px !important;
         font-size: 0.95rem;
     }
 }
@@ -95,6 +150,16 @@ nav a.active {
 
     nav a {
         padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+
+    .username-display {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+    }
+
+    .btn-auth {
+        padding: 6px 12px !important;
         font-size: 0.9rem;
     }
 }
@@ -127,16 +192,6 @@ footer {
         font-size: 1.5rem;
     }
 
-    nav {
-        padding: 12px 20px;
-    }
-
-    nav a {
-        padding: 6px 12px;
-        margin: 0 2px;
-        font-size: 0.95rem;
-    }
-
     footer {
         padding: 20px;
         font-size: 0.85rem;
@@ -149,19 +204,81 @@ footer {
         font-size: 1.3rem;
     }
 
-    nav {
-        padding: 10px 16px;
-        text-align: center;
-    }
-
-    nav a {
-        display: inline-block;
-        padding: 6px 10px;
-        margin: 2px;
-        font-size: 0.9rem;
-    }
-
     footer {
         padding: 16px;
     }
+}
+
+/* Flash Messages Styling */
+.flash-messages {
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 0 40px;
+}
+
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background: #c6f6d5;
+    color: #22543d;
+    border-color: #48bb78;
+}
+
+.alert-error,
+.alert-danger {
+    background: #fed7d7;
+    color: #742a2a;
+    border-color: #e53e3e;
+}
+
+.alert-info {
+    background: #bee3f8;
+    color: #2c5282;
+    border-color: #4299e1;
+}
+
+.alert-warning {
+    background: #feebc8;
+    color: #7c2d12;
+    border-color: #ed8936;
+}
+
+
+
+
+.site-name {
+    font-size: 1.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin-left: 30px;
+}
+
+.site-name:hover {
+    transform: scale(1.1);
+}
+
+.logo-web {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+}
+
+.logo-x {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
 }
